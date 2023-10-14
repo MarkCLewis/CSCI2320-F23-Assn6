@@ -6,6 +6,13 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
+  // If you use this, you don't have to do null checks on nodes when you
+  // get the height. It is static so it can be called from the Node as well.
+  // private static <K extends Comparable<K>, V> int height(Node<K, V> n) {
+  //   if (n == null) return 0;
+  //   return n.height;
+  // }
+
   // Put your Node class and private data up here.
 
   // I'm giving you some helper method to make testing easier.
@@ -46,8 +53,8 @@ public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
    * Return the height of the tree. This is just for testing purposes, but my tests are going to call it.
    * @return The height of the tree.
    */
-  public int height() {
-    // return root.height;  // Suggested implementation.
+  public int treeHeight() {
+    // return heigh(root)t;  // Suggested implementation.
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'iterator'");
   }

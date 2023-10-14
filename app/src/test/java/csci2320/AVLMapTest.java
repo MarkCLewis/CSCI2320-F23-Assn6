@@ -17,7 +17,8 @@ public class AVLMapTest {
     for (int i = 0; i < (1 << 20) - 1; ++i) {
       map.put(i, i);
     }
-    assertEquals(20, map.height());
+    assertEquals((1 << 20) - 1, map.size());
+    assertEquals(20, map.treeHeight());
   }
 
   /**
@@ -25,10 +26,11 @@ public class AVLMapTest {
    */
   @Test void heightTest2() {
     AVLMap<Integer, Integer> map = new AVLMap<>();
-    for (int i = (1 << 20) - 1; i > 0; ++i) {
+    for (int i = (1 << 20) - 1; i > 0; --i) {
       map.put(i, i);
     }
-    assertEquals(20, map.height());
+    assertEquals((1 << 20) - 1, map.size());
+    assertEquals(20, map.treeHeight());
   }
 
   /**
@@ -42,7 +44,8 @@ public class AVLMapTest {
       map.put(mid - i,mid - i);
       map.put(mid + i,mid + i);
     }
-    assertEquals(20, map.height());
+    assertEquals((1 << 20) - 1, map.size());
+    assertEquals(20, map.treeHeight());
   }
 
   /**
@@ -52,11 +55,12 @@ public class AVLMapTest {
     AVLMap<Integer, Integer> map = new AVLMap<>();
     var mid = (1 << 19);
     map.put(mid, mid);
-    for (int i = 1; i < (1 << 20) - 1; ++i) {
+    for (int i = 1; i <= (1 << 19); ++i) {
       map.put(i, i);
-      map.put((1 << 20) - i,(1 << 20) + i);
+      map.put((1 << 20) - i, i);
     }
-    assertEquals(20, map.height());
+    assertEquals((1 << 20) - 1, map.size());
+    assertEquals(20, map.treeHeight());
   }
 
   // I'm giving you this test of your iterator that does a petty good job of finding
@@ -83,23 +87,24 @@ public class AVLMapTest {
   // Testing remove can be hard. This does a randomized test of remove. You should write your own little
   // tests, but 
   // @Test void testRemoveBig() {
-  //   BSTMap<String, Integer> map = new BSTMap<>();
+  //   AVLMap<String, Integer> map = new AVLMap<>();
   //   assertEquals(0, map.size());
   //   var keys = new ArrayList<String>();
   //   var vals = new ArrayList<Integer>();
-  //   var rand = new Random();
-  //   for (int i = 0; i < 1000; ++i) {
+  //   var rand = new Random(70); // Keeping the same number here means you always get the operations.
+  //   for (int i = 0; i < 2000; ++i) {
   //     keys.add(App.randomString(rand, 10));
   //     vals.add(rand.nextInt());
   //     map.put(keys.get(i), vals.get(i));
   //   }
-  //   Collections.shuffle(keys);
+  //   Collections.shuffle(keys, rand);
   //   for (int i = 0; i < keys.size(); ++i) {
   //     var key = keys.get(i);
   //     var value = map.get(key).get();
   //     assertTrue(map.contains(key));
+  //     // System.out.println("Removing "+key);
   //     assertEquals(Optional.of(value), map.remove(key));
-  //     map.preorderPrintKeys();
+  //     // map.preorderPrintKeys();
   //     assertTrue(map.isConsistent());
   //     assertFalse(map.contains(key));
   //     assertEquals(keys.size()-i-1, map.size());

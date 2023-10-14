@@ -67,7 +67,7 @@ public class App {
             while (ret.contains(key)) key = randomString(rand, KEY_LEN);
             ret.put(key, rand.nextInt());
         }
-        System.out.println("Initial Height: " + ret.height());
+        System.out.println("Initial Height: " + ret.treeHeight());
         return ret;
     }
 
