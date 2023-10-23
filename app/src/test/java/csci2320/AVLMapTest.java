@@ -40,7 +40,7 @@ public class AVLMapTest {
     AVLMap<Integer, Integer> map = new AVLMap<>();
     var mid = (1 << 19);
     map.put(mid, mid);
-    for (int i = 1; i < (1 << 20) - 1; ++i) {
+    for (int i = 0; i < (1 << 19); ++i) {
       map.put(mid - i,mid - i);
       map.put(mid + i,mid + i);
     }
